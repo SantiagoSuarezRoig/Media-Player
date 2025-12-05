@@ -31,6 +31,7 @@ body{
 }
 
 
+
 .img-container{
     position: relative;
     width: 110px;
@@ -86,14 +87,21 @@ body{
     z-index: 1;
 }
 
+
+
+
+
+
 .action-btn{
     background-color: #fff;
     border: 0;
     color:rgb(198, 29, 29);
     font-size: 20px;
+    border-radius: 50%;
     cursor: pointer;
     padding: 10px;
     margin:0 20px;
+    transition: box-shadow 0.2s linear ;
 }
 
 .action-btn-big{
@@ -104,6 +112,15 @@ body{
 .action-btn:focus{
     outline:0;
 }
+
+.action-btn:hover{
+    box-shadow: 0 5px 5px 0 rgb(198, 29, 29);
+    background-color:rgb(246, 246, 246);
+}
+
+
+
+
 
 
 .music-info{
