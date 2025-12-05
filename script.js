@@ -7,7 +7,7 @@ const nextButt = document.getElementById('next')
 const audio = document.getElementById('audio')
 const title = document.getElementById('title')
 const progressContainer = document.querySelector('.progress-container')
-const progress = document.querySelector('progress')
+const progress = document.querySelector('.progress')
 const cover = document.getElementById('cover')
 
 
@@ -72,6 +72,13 @@ function pauseMusic(){
     audio.pause()
 }
 
+function updateProgress(event){
+    const {duration,currentTime} = event.srcElement;
+    const progressPercent = (currentTime / duration) * 100;
+    progress.style.width = `${progressPercent}%`
+}
+
+
 playButt.addEventListener('click',()=>{
     let isPlaying = musicContainer.classList.contains('play') 
 
@@ -79,7 +86,10 @@ playButt.addEventListener('click',()=>{
         pauseMusic()
     else 
         playMusic()
-    
 })
+
+
+audio.addEventListener('timeupdate', updateProgress);
+
 
 
