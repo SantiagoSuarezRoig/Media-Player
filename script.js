@@ -56,6 +56,15 @@ prevButt.addEventListener('click',()=>{
     audio.play()
 })
 
+playButt.addEventListener('click',()=>{
+    let isPlaying = musicContainer.classList.contains('play') 
+    if(isPlaying)
+        pauseMusic()
+    else 
+        playMusic()
+})
+
+
 function playMusic(){
     musicContainer.classList.add('play')
     playButt.querySelector('.fas').classList.remove('fa-play')
@@ -68,28 +77,37 @@ function pauseMusic(){
     musicContainer.classList.remove('play')
     playButt.querySelector('.fas').classList.remove('fa-pause')
     playButt.querySelector('.fas').classList.add('fa-play')
-    
     audio.pause()
 }
 
-function updateProgress(event){
-    const {duration,currentTime} = event.srcElement;
+function updateProgress(e){
+    const {duration,currentTime} = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`
 }
 
 
-playButt.addEventListener('click',()=>{
-    let isPlaying = musicContainer.classList.contains('play') 
 
-    if(isPlaying)
-        pauseMusic()
-    else 
-        playMusic()
-})
 
+
+
+function changeProgress(e){
+    const widthContainer = this.clientWidth;
+    const clickWidth = e.offsetX
+    audio.currentTime = (clickWidth/widthContainer)*audio.duration
+}
+
+
+
+
+
+
+progressContainer.addEventListener('click',changeProgress)
 
 audio.addEventListener('timeupdate', updateProgress);
+audio.addEventListener('ended', ()=>{
+    nextButt.click()
+});
 
 
 
