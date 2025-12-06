@@ -122,6 +122,12 @@ body{
 }
 
 
+.btnON{
+    box-shadow: 0 5px 5px 0 rgb(198, 29, 29);
+    background-color:rgb(246, 246, 246);
+}
+
+
 
 
 
@@ -129,24 +135,31 @@ body{
 .music-info{
     background-color: rosybrown;
     border-radius: 15px 15px 0 0;
-    position: absolute;
     top: 0;
+    position: absolute;
+
+    
     left: 20px;
     width: calc(100% - 40px);
-    opacity: 0;
     padding: 10px 10px 10px 150px;
-    transform: translateY(0%);
-    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    
+
+    transform: translateY(-100%);
+}
+
+.duration{
+    
+}
+
+.progressBar-area{
+    display: flex;
+    align-items: center;
+    gap: 10px
 }
 
 
 .music-info h4{
     margin:0;
-}
-
-.music-container.play .music-info{
-    opacity: 1;
-    transform: translateY(-100%)
 }
 
 
@@ -164,5 +177,4 @@ body{
     border-radius: 5px;
     height: 100%;
     width: 0%;
-    transition: width 0.1s linear;
 }
