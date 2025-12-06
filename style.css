@@ -25,11 +25,15 @@ body{
     box-shadow: 0 20px 20px 0 rgb(199, 10, 10);
     display:flex;
     padding: 20px 30px;
-    position:relative;
-    margin: 100px 0;
+    position:absolute;
+
+    cursor: grab;
     z-index: 10;
 }
 
+.music-container:active {
+    cursor: grabbing;
+}
 
 
 .img-container{

@@ -33,6 +33,13 @@ const Album = [{
 
 let currentSong = 0
 let repeatItself = false
+let Dragging = false
+let startX = 0
+let startY = 0
+let differenciaY = 0
+let differenciaX = 0
+let initialDistanceContainerTOP = musicContainer.offsetTop
+let initialDistanceContainerLEFT = musicContainer.offsetLeft
 
 
 loadMusic()
@@ -121,6 +128,34 @@ function timeCounter(){
 }
 
 
+function startDragging(e){
+    Dragging = true;
+
+    startY = e.clientY    
+    startX = e.clientX
+
+    initialDistanceContainerTOP = musicContainer.offsetTop
+    initialDistanceContainerLEFT = musicContainer.offsetLeft
+}
+
+function draggingContainer(e){
+    if(!Dragging)
+        return;
+
+
+    differenciaY = e.clientY - startY 
+    differenciaX = e.clientX - startX 
+
+    musicContainer.style.top = `${initialDistanceContainerTOP + differenciaY}px`
+    musicContainer.style.left = `${initialDistanceContainerLEFT + differenciaX }px`
+}
+
+function stopDragginContainer(){
+    Dragging = false
+}
+
+
+
 document.addEventListener('keydown',(e)=>{
     if(e.key == 'Enter' || e.key ==' '){
         e.preventDefault(); 
@@ -140,6 +175,12 @@ audio.addEventListener('ended', ()=>{
         playMusic()
 });
 
-
 audio.addEventListener('timeupdate', timeCounter);
+
+
+
+musicContainer.addEventListener("mousedown",startDragging);
+document.addEventListener("mousemove",draggingContainer);
+document.addEventListener("mouseup",stopDragginContainer );
+
 
