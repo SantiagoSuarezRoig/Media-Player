@@ -1,4 +1,5 @@
 
+
 const musicContainer = document.querySelector('.music-container')
 
 const playButt = document.getElementById('play') 
@@ -13,7 +14,6 @@ const progressContainer = document.querySelector('.progress-container')
 const progress = document.querySelector('.progress')
 const duration = document.querySelector('.duration')
 const cover = document.getElementById('cover')
-
 
 
 const Album = [{
@@ -108,6 +108,17 @@ function changeProgress(e){
 
 
 
+function timeCounter(){
+    const totalDuration = formatTime(audio.duration)
+    const currentDuration = formatTime(audio.currentTime)
+    duration.innerText = audio.duration && audio.currentTime ?`${currentDuration} / ${totalDuration}` :'0:00 / 0:00'
+
+    function formatTime(sec) {
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60).toString().padStart(2, "0");
+        return `${m}:${s}`;
+    }
+}
 
 
 document.addEventListener('keydown',(e)=>{
@@ -130,4 +141,5 @@ audio.addEventListener('ended', ()=>{
 });
 
 
+audio.addEventListener('timeupdate', timeCounter);
 
