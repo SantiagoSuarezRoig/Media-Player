@@ -14,7 +14,7 @@ const progressContainer = document.querySelector('.progress-container')
 const progress = document.querySelector('.progress')
 const duration = document.querySelector('.duration')
 const cover = document.getElementById('cover')
-
+const songsgrid = document.querySelector('.songs-grid')
 
 const Album = [{
     name:'You Know You Like It',
@@ -28,8 +28,65 @@ const Album = [{
     name:'Rock The Disco',
     image: 'images/lobo.png',
     song: 'music/Chiqito - Rock The Disco (Original Mix).mp3'
+},{
+    name:'Bass Inside',
+    image: 'images/Caballero.png',
+    song: 'music/AC Slater - Bass Inside.mp3'
+},{
+    name:'After Earth',
+    image: 'images/Jesus.png',
+    song: 'music/After Earth.mp3'
+},{
+    name:'Esto no es Paul',
+    image: 'images/paulElAmo.png',
+    song: 'music/Butane (Original Mix).mp3'
+},{
+    name:'Daso Meine',
+    image: 'images/Temita1.png',
+    song: 'music/Daso - Meine.mp3'
+},{
+    name:'Cosmos',
+    image: 'images/VirgenRezando.png',
+    song: 'music/Cosmos.mp3'
 }
 ]
+
+
+function generateSongs(){
+    let html = ''
+    Album.forEach(option =>{
+        html += 
+            `<div class="song-container"
+            data-song="${option.song}"
+            data-name="${option.name}"
+            data-image="${option.image}"
+            >
+                <button class="btn-repSong btn-repSong-${option.name}">
+                    <img src="${option.image}" class="song-image">
+                    <h4 class="song-name">${option.name}</h4>
+                </button>
+            </div>
+            `
+    })
+    songsgrid.innerHTML = html;
+}
+
+generateSongs()
+
+
+document.querySelectorAll('.song-container').forEach(songOption=>{
+    songOption.addEventListener('click',()=>{
+        pauseMusic()
+        let {song,name,image} = songOption.dataset
+        audio.src = song
+        cover.src = image
+        title.innerText = name
+        playMusic()
+    })
+})
+
+
+
 
 let currentSong = 0
 let repeatItself = false
@@ -128,31 +185,6 @@ function timeCounter(){
 }
 
 
-function startDragging(e){
-    Dragging = true;
-
-    startY = e.clientY    
-    startX = e.clientX
-
-    initialDistanceContainerTOP = musicContainer.offsetTop
-    initialDistanceContainerLEFT = musicContainer.offsetLeft
-}
-
-function draggingContainer(e){
-    if(!Dragging)
-        return;
-
-
-    differenciaY = e.clientY - startY 
-    differenciaX = e.clientX - startX 
-
-    musicContainer.style.top = `${initialDistanceContainerTOP + differenciaY}px`
-    musicContainer.style.left = `${initialDistanceContainerLEFT + differenciaX }px`
-}
-
-function stopDragginContainer(){
-    Dragging = false
-}
 
 
 
@@ -179,8 +211,30 @@ audio.addEventListener('timeupdate', timeCounter);
 
 
 
-musicContainer.addEventListener("mousedown",startDragging);
-document.addEventListener("mousemove",draggingContainer);
-document.addEventListener("mouseup",stopDragginContainer );
+musicContainer.addEventListener("mousedown",(e)=>{
+    Dragging = true;
+
+    startY = e.clientY    
+    startX = e.clientX
+
+    initialDistanceContainerTOP = musicContainer.offsetTop
+    initialDistanceContainerLEFT = musicContainer.offsetLeft
+});
+
+document.addEventListener("mousemove",(e)=>{
+    if(!Dragging)
+        return;
+
+    differenciaY = e.clientY - startY 
+    differenciaX = e.clientX - startX 
+
+    musicContainer.style.top = `${initialDistanceContainerTOP + differenciaY}px`
+    musicContainer.style.left = `${initialDistanceContainerLEFT + differenciaX }px`
+});
+
+
+document.addEventListener("mouseup",()=>{
+    Dragging = false
+} );
 
 

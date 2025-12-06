@@ -12,9 +12,9 @@ body{
     height:100vh;
     margin:0;
     font-family: 'Lato', sans-serif;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center
 }
 
@@ -26,6 +26,7 @@ body{
     display:flex;
     padding: 20px 30px;
     position:absolute;
+    border: solid 2px black;
 
     cursor: grab;
     z-index: 10;
@@ -51,6 +52,8 @@ body{
     width: 35px;
     height: 35px;
 
+
+
     top: 0%;
     right:50%;
     transform: translate(50%,-50%)
@@ -66,6 +69,8 @@ body{
     position: absolute;
     bottom: 0;
     left: 0;
+
+    border: solid 2px black;
 
     animation: rotate 3s linear infinite;
 
@@ -109,6 +114,9 @@ body{
     padding: 10px;
     margin:0 20px;
     transition: box-shadow 0.2s linear ;
+
+    border: solid 1px rgb(235, 131, 131);
+
 }
 
 .action-btn-big{
@@ -142,6 +150,8 @@ body{
     top: 0;
     position: absolute;
 
+    border: solid 2px black;
+
     
     left: 20px;
     width: calc(100% - 40px);
@@ -150,6 +160,12 @@ body{
 
     transform: translateY(-100%);
 }
+
+
+.music-info:hover{
+    cursor: default;
+}
+
 
 
 .progressBar-area{
@@ -170,7 +186,11 @@ body{
     cursor: pointer;
     margin: 10px 0;
     height: 4px;
-    width: 200px
+    width: 200px;
+
+    display: flex;
+    align-items: center;
+
 }
 
 .progress{
@@ -178,4 +198,36 @@ body{
     border-radius: 5px;
     height: 100%;
     width: 0%;
+}
+
+
+
+
+.songs-grid{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.song-container{
+    margin: 10px;
+}
+
+.song-name{
+    align-self: center;
+}
+
+.btn-repSong{
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.btn-repSong img{
+    height: 200px;
+    width: 150px;
+    border-radius: 15px;
+}
+
+.btn-repSong:hover{
+    box-shadow: 0 5px 5px 0 rgb(198, 29, 29);
+    background-color:rgb(212, 146, 146);
 }
