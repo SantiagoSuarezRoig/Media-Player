@@ -63,7 +63,7 @@ function generateSongs(){
             >
                 <button class="btn-repSong btn-repSong-${option.name}">
                     <img src="${option.image}" class="song-image">
-                    <h4 class="song-name">${option.name}</h4>
+                    <h3 class="song-name">${option.name}</h4>
                 </button>
             </div>
             `
