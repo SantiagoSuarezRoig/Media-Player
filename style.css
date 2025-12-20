@@ -225,7 +225,7 @@ body{
     background-color: transparent;
     border: none;
 
-    transition: background-color 0.6s linear,box-shadow 0.4s linear
+    transition: background-color 0.6s linear,box-shadow 0.4s linear, scale 0.7s linear
 }
 
 .btn-repSong:focus{
@@ -248,4 +248,5 @@ body{
 .btn-repSong:hover{
     box-shadow: 0 5px 5px 0 rgb(59, 1, 66);
     background-color:rgb(251, 210, 255);
+    scale: 1.1
 }
