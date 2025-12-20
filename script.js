@@ -42,7 +42,7 @@ const Album = [{
     song: 'music/Butane (Original Mix).mp3'
 },{
     name:'Daso Meine',
-    image: 'images/Temita1.png',
+    image: 'images/temita1.png',
     song: 'music/Daso - Meine.mp3'
 },{
     name:'Cosmos',
